@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonoplastia Antiga - Museu Máquina dos Sonhos</title>
+    <style>
+        :root {
+            --black: #121212;
+            --gold: #D4AF37;
+            --red: #8B0000;
+            --blue: #1A237E;
+            --light: #F5F5F5;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--black);
+            color: var(--light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to bottom, var(--black), transparent);
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            color: var(--gold);
+            text-align: center;
+            margin: 40px 0 20px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin: 50px 0 20px;
+            border-bottom: 2px solid var(--red);
+            padding-bottom: 10px;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            filter: sepia(0.5) contrast(1.2);
+            border-radius: 5px;
+            margin: 30px 0;
+            border: 3px solid var(--gold);
+        }
+        
+        .highlight-box {
+            background-color: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            margin: 40px 0;
+            font-style: italic;
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        .highlight-box::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.2;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+        }
+        
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .tech-table th, .tech-table td {
+            padding: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .tech-table th {
+            background-color: rgba(139, 0, 0, 0.5);
+            color: var(--light);
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+        
+        .tech-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 50px 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            height: 250px;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 15px;
+            color: white;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+            padding-left: 50px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            width: 2px;
+            height: 100%;
+            background-color: var(--gold);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: -40px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--red);
+            border: 3px solid var(--gold);
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--red);
+            color: var(--light);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+        
+        .back-btn {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                padding-left: 30px;
+            }
+            
+            .timeline::before {
+                left: 15px;
+            }
+            
+            .timeline-item::before {
+                left: -30px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-film"></i>
+                <span>Museu Máquina dos Sonhos</span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h1>A Magia da Sonoplastia Antiga</h1>
+        
+        <div class="highlight-box">
+            "Antes dos bits e bytes, o som do cinema era criado com engenhosidade mecânica e truques de ilusão auditiva."
+        </div>
+        
+        <img src="sonoplastia.jpeg" alt="Estúdio de som antigo" class="hero-image">
+        
+        <h2>A Era do Cinema Mudo (1895-1927)</h2>
+        
+        <p>Apesar do nome, as exibições nunca foram silenciosas. Cada sala tinha seu próprio sistema sonoro:</p>
+        
+        <ul>
+            <li><strong>Pianistas ao vivo</strong>: Improvisavam partituras baseadas no clima das cenas</li>
+            <li><strong>Efeitos práticos</strong>: Máquinas de vento, pratos de trovão e passos gravados em estúdios</li>
+            <li><strong>Orquestras completas</strong>: Nos grandes cinemas das capitais</li>
+        </ul>
+        
+        <div class="highlight-box">
+            <strong>Peça em Destaque:</strong> Nosso <strong>Vitaphone original (1926)</strong> que sincronizava discos de 78rpm com o projetor.
+            <br><br>
+            <strong>Curiosidade:</strong> Os operadores precisavam trocar os discos a cada 4 minutos e sincronizá-los manualmente!
+        </div>
+        
+        <h2>A Revolução do Som Óptico (1927-1950)</h2>
+        
+        <p>Com <em>"O Cantor de Jazz"</em> (1927), surgiu a tecnologia que dominou 30 anos:</p>
+        
+        <table class="tech-table">
+            <tr>
+                <th>Técnica</th>
+                <th>Como Funcionava</th>
+                <th>Desafios</th>
+            </tr>
+            <tr>
+                <td>Faixa sonora lateral</td>
+                <td>Ondas luminosas lidas por célula fotoelétrica</td>
+                <td>Ruído de fundo constante</td>
+            </tr>
+            <tr>
+                <td>Sistema Movietone (Fox)</td>
+                <td>Som gravado como variação de densidade</td>
+                <td>Perda de altas frequências</td>
+            </tr>
+            <tr>
+                <td>RCA Photophone</td>
+                <td>Faixa de som entre os fotogramas</td>
+                <td>Sincronismo delicado</td>
+            </tr>
+        </table>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://i.ebayimg.com/images/g/UQwAAOSwZbtlmxo5/s-l1600.webp" alt="Projetor com som óptico">
+                <div class="gallery-caption">Projetor Western Electric (1932)</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://webinsider.com.br/wp-content/uploads/2024/08/trilhas-sonoras-em-pelicula-de-cinema.jpg" alt="Faixa sonora óptica">
+                <div class="gallery-caption">Faixa sonora em película 35mm</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://vejasp.abril.com.br/wp-content/uploads/2017/09/capa8.jpg?quality=70&strip=info&w=700&h=466&crop=1" alt="Estúdio de gravação">
+                <div class="gallery-caption">Estúdio de dublagem anos 1930</div>
+            </div>
+        </div>
+        
+        <h2>Efeitos Sonoros Artesanais</h2>
+        
+        <p>Os estúdios criavam bibliotecas de sons com inventividade:</p>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">Passos na neve</div>
+                <p>Amido de milho espremido em couro</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">Espadas medievais</div>
+                <p>Vibração de serras elétricas amortecidas</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">Trovões</div>
+                <p>Folhas finas de estanho sacudidas (<em>"Thunder Sheet"</em>)</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">Pássaros</div>
+                <p>Atrito entre rolhas de cortiça úmidas</p>
+            </div>
+        </div>
+        
+        <div class="highlight-box" style="text-align: center;">
+            <strong>Experiência no Museu:</strong> Visite nossa <strong>Estação Foley</strong> e crie efeitos sonoros com réplicas dos equipamentos dos anos 1940!
+        </div>
+        
+        <h2>A Transição para o Magnético (1950-1990)</h2>
+        
+        <p>A película ganhou faixas magnéticas para maior fidelidade:</p>
+        
+        <ol>
+            <li><strong>Estéreo 4-track</strong>: Usado em <em>"Cantando na Chuva"</em> (1952)</li>
+            <li><strong>Magnetic Striping</strong>: Faixas coladas no filme</li>
+            <li><strong>Dolby Stereo (1975)</strong>: Redução de ruído que permitiu <em>"Guerra nas Estrelas"</em></li>
+        </ol>
+        
+        <div class="highlight-box">
+            <strong>Dado Técnico:</strong> Um rolo de 35mm com trilha magnética pesava 50% a mais que um convencional.
+        </div>
+        
+        <div class="back-btn">
+            <a href="index.html" class="btn">
+                <i class="fas fa-arrow-left"></i> Voltar para o Museu
+            </a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Museu Máquina dos Sonhos - Ceará Mirim/RN</p>
+            <p>Preservando a história técnica do cinema brasileiro</p>
+        </div>
+    </footer>
+</body>
+</html>

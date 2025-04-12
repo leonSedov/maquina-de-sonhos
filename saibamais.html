@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposição - Museu Máquina dos Sonhos</title>
+    <style>
+        /* Reutilize o mesmo CSS do site principal ou adicione apenas as diferenças */
+        :root {
+            --black: #121212;
+            --gold: #D4AF37;
+            --red: #8B0000;
+            --light: #F5F5F5;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--black);
+            color: var(--light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .exhibition-header {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .exhibition-header h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .exhibition-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .exhibition-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 50px 0;
+        }
+        
+        .exhibition-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .exhibition-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .exhibition-gallery img:hover {
+            transform: scale(1.03);
+        }
+        
+        .main-image {
+            grid-column: span 2;
+        }
+        
+        .exhibition-details {
+            padding: 20px;
+        }
+        
+        .exhibition-details h2 {
+            color: var(--gold);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .exhibition-info {
+            margin-bottom: 30px;
+        }
+        
+        .info-item {
+            margin-bottom: 15px;
+        }
+        
+        .info-item strong {
+            color: var(--gold);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--red);
+            color: var(--light);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background-color: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+        
+        .back-btn {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        /* Modal para imagens */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--gold);
+            font-size: 40px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .exhibition-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .exhibition-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-image {
+                grid-column: span 1;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho da Exposição -->
+        <div class="exhibition-header">
+            <h1 id="exhibition-title">Evolução dos Projetores</h1>
+            <p id="exhibition-subtitle">Da lanterna mágica aos projetores modernos</p>
+        </div>
+        
+        <!-- Conteúdo Principal -->
+        <div class="exhibition-content">
+            <!-- Galeria de Imagens -->
+            <div class="exhibition-gallery">
+                <img src="cinema-2-800x524.webp" alt="Projetor Antigo" class="main-image" onclick="openModal(this.src)">
+                <img src="lanterna4.jpg" alt="Detalhe do Projetor" onclick="openModal(this.src)">
+                <img src="lanterna3.jpg" alt="Coleção de Projetores" onclick="openModal(this.src)">
+            </div>
+            
+            <!-- Detalhes da Exposição -->
+            <div class="exhibition-details">
+                <h2>Sobre a Exposição</h2>
+                <div class="exhibition-info">
+                    <p>Esta exposição apresenta uma jornada fascinante pela evolução tecnológica dos projetores, desde os primeiros dispositivos ópticos do século XIX até os equipamentos digitais contemporâneos.</p>
+                    
+                    <p>Destaques incluem:</p>
+                    <ul>
+                        <li>Modelos raros de projetores de 1890-1950</li>
+                        <li>Demonstrações interativas de funcionamento</li>
+                        <li>Películas históricas restauradas</li>
+                        <li>Equipamentos utilizados no cinema brasileiro</li>
+                    </ul>
+                </div>
+                <div class="info-item">
+                    <strong>Classificação:</strong> Livre para todos os públicos
+                </div>
+                
+                <a href="https://instagram.com/maquina_de_sonhoss" class="btn">Agendar Visita</a>
+            </div>
+        </div>
+        
+        <!-- Botão de Voltar -->
+        <div class="back-btn">
+            <a href="index.html" class="btn btn-outline">
+                <i class="fas fa-arrow-left"></i> Voltar para o Museu
+            </a>
+        </div>
+    </div>
+    
+    <!-- Modal para imagens -->
+    <div class="modal" id="imageModal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    
+    <script>
+        // Funções para o modal de imagens
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImg.src = src;
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+        
+        // Fechar modal ao clicar fora da imagem
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Carregar dados da exposição com base no parâmetro da URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const exhibitionId = urlParams.get('id');
+            
+            // Dados das exposições (pode ser substituído por um banco de dados real)
+            const exhibitions = {
+                'projetores': {
+                    title: 'Evolução dos Projetores',
+                    subtitle: 'Da lanterna mágica aos projetores modernos',
+                    images: [
+                        'projetor1.jpg',
+                        'projetor2.jpg',
+                        'projetor3.jpg'
+                    ],
+                    description: 'Esta exposição apresenta uma jornada fascinante pela evolução tecnológica dos projetores...'
+                },
+                'pelicula': {
+                    title: 'Arte em Película',
+                    subtitle: 'Restauros e curiosidades sobre filmes antigos',
+                    images: [
+                        'pelicula1.jpg',
+                        'pelicula2.jpg',
+                        'pelicula3.jpg'
+                    ],
+                    description: 'Explore a arte e a técnica por trás da preservação de filmes em película...'
+                },
+                'som': {
+                    title: 'Som no Cinema',
+                    subtitle: 'A evolução da captação e reprodução sonora',
+                    images: [
+                        'som1.jpg',
+                        'som2.jpg',
+                        'som3.jpg'
+                    ],
+                    description: 'Descubra como o som revolucionou a experiência cinematográfica...'
+                }
+            };
+            
+            // Se houver um ID na URL, carrega os dados correspondentes
+            if (exhibitionId && exhibitions[exhibitionId]) {
+                const exhibition = exhibitions[exhibitionId];
+                document.getElementById('exhibition-title').textContent = exhibition.title;
+                document.getElementById('exhibition-subtitle').textContent = exhibition.subtitle;
+                
+                // Atualiza imagens (substitua pelos caminhos reais)
+                const gallery = document.querySelector('.exhibition-gallery');
+                gallery.innerHTML = '';
+                
+                exhibition.images.forEach((img, index) => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = img;
+                    imgElement.alt = exhibition.title;
+                    imgElement.onclick = function() { openModal(this.src); };
+                    
+                    if (index === 0) {
+                        imgElement.classList.add('main-image');
+                    }
+                    
+                    gallery.appendChild(imgElement);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
